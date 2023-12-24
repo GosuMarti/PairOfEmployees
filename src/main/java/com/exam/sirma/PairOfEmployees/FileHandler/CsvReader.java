@@ -15,24 +15,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
 public class CsvReader {
-
-    @Autowired
-    private EmployeeRepository employeeRepository;
-    @Autowired
-    private ResourceLoader resourceLoader;
-    @Value("classpath:employeeData.csv")
-    private Resource csvResource;
-
-    @PostConstruct
-    public void readCsvOnStartup(){
-        List<Employee> employeesList = read(csvResource);
-        for (Employee employee : employeesList) {
-            employeeRepository.save(employee);
-        }
-    }
-    public List<Employee> read(Resource resource){
+    public static List<Employee> read(Resource resource){
         List<Employee> employees = new ArrayList<>();
         try (InputStream inputStream = resource.getInputStream();
              InputStreamReader reader = new InputStreamReader(inputStream);
