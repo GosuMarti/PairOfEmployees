@@ -4,6 +4,7 @@ import com.exam.sirma.PairOfEmployees.Model.Employee;
 import com.exam.sirma.PairOfEmployees.Repository.EmployeeRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
@@ -19,12 +20,14 @@ public class CsvReader {
 
     @Autowired
     private EmployeeRepository employeeRepository;
+    @Autowired
     private ResourceLoader resourceLoader;
+    @Value("classpath:employeeData.csv")
+    private Resource csvResource;
 
     @PostConstruct
     public void readCsvOnStartup(){
-        Resource resource = resourceLoader.getResource("classpath:employeeData.csv");
-        List<Employee> employeesList = read(resource);
+        List<Employee> employeesList = read(csvResource);
         for (Employee employee : employeesList) {
             employeeRepository.save(employee);
         }
