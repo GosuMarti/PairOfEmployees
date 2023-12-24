@@ -10,16 +10,16 @@ public class Employee {
     @Id
     private long ID;
     private int projectID;
-    private LocalDate DateFrom;
-    private LocalDate DateTo;
+    private LocalDate startDate;
+    private LocalDate finishDate;
 
     public Employee(){}
 
-    public Employee(long id, int projectID, LocalDate dateFrom, LocalDate dateTo) {
+    public Employee(long id, int projectID, LocalDate startDate, LocalDate finishDate) {
         this.ID = id;
         this.projectID = projectID;
-        this.DateFrom = dateFrom;
-        this.DateTo = dateTo;
+        this.startDate = startDate;
+        this.finishDate = finishDate;
     }
 
     public long getID() {
@@ -38,19 +38,19 @@ public class Employee {
         this.projectID = projectID;
     }
 
-    public LocalDate getDateFrom() {
-        return DateFrom;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setDateFrom(LocalDate dateFrom) {
-        DateFrom = dateFrom;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
-    public LocalDate getDateTo() {
-        return DateTo;
+    public LocalDate getFinishDate() {
+        return finishDate;
     }
 
-    public void setDateTo(LocalDate dateTo) {
-        DateTo = dateTo;
+    public void setFinishDate(LocalDate finishDate) {
+        this.finishDate = finishDate;
     }
 }

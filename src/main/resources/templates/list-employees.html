@@ -21,8 +21,8 @@
         <tr th:each="employee: ${employees}">
             <td th:text="${employee.ID}"></td>
             <td th:text="${employee.projectID}"></td>
-            <td th:text="${employee.DateFrom}"></td>
-            <td th:text="${employee.DateTo}"></td>
+            <td th:text="${employee.startDate}"></td>
+            <td th:text="${employee.finishDate}"></td>
         </tr>
         </tbody>
     </table>
