@@ -9,8 +9,19 @@
 
 <div class="container">
     <h1>Employees that have worked together the most on the same project:</h1>
-    <p>Employee <span>14</span> and Employee <span> 15</span></p>
-    <p>Have worked together on project <span></span> for <span> months</span></p>
+    <th:block th:if="${mostTimeWorkedPair != null}">
+        <p>
+            Employee <span th:text="${mostTimeWorkedPair.employee1.ID}"></span>
+            and Employee <span th:text="${mostTimeWorkedPair.employee2.ID}"></span>
+        </p>
+        <p>
+            Have worked together on project <span th:text="${mostTimeWorkedPair.employee1.projectID}"></span>
+            for <span th:text="${mostTimeWorkedPair.totalDurationInDays}"></span> days
+        </p>
+    </th:block>
+    <th:block th:if="${mostTimeWorkedPair == null}">
+        <p>No pair of employees found working on the same project.</p>
+    </th:block>
 </div>
 
 </body>
