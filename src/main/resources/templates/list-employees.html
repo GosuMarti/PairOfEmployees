@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Employees</title></head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<body>
+<div class="container">
+    <h2>List of employees</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>EmployeeID</th>
+            <th>ProjectID</th>
+            <th>Starting date</th>
+            <th>Finish date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee: ${employees}">
+            <td th:text="${employee.ID}"></td>
+            <td th:text="${employee.projectID}"></td>
+            <td th:text="${employee.DateFrom}"></td>
+            <td th:text="${employee.DateTo}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
