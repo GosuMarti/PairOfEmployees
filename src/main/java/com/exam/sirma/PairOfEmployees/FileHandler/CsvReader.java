@@ -4,11 +4,11 @@ import com.exam.sirma.PairOfEmployees.Model.Employee;
 import com.exam.sirma.PairOfEmployees.Repository.EmployeeRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -19,17 +19,21 @@ public class CsvReader {
 
     @Autowired
     private EmployeeRepository employeeRepository;
+    private ResourceLoader resourceLoader;
 
     @PostConstruct
     public void readCsvOnStartup(){
-        List<Employee> employeesList = read("employeeData.csv");
+        Resource resource = resourceLoader.getResource("classpath:employeeData.csv");
+        List<Employee> employeesList = read(resource);
         for (Employee employee : employeesList) {
             employeeRepository.save(employee);
         }
     }
-    public List<Employee> read(String filename){
+    public List<Employee> read(Resource resource){
         List<Employee> employees = new ArrayList<>();
-        try (BufferedReader br =  new BufferedReader(new FileReader(filename))){
+        try (InputStream inputStream = resource.getInputStream();
+             InputStreamReader reader = new InputStreamReader(inputStream);
+             BufferedReader br =  new BufferedReader((reader))){
             String line;
             while ((line = br.readLine()) != null){
                 String[] values = line.split(",");
