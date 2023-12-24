@@ -22,5 +22,11 @@ public class EmployeeController {
         return modelAndView;
     }
 
+    @GetMapping("/pairOfEmployees")
+    public ModelAndView pairOfEmployees(){
+        ModelAndView modelAndView = new ModelAndView("pair-of-employees");
+        return modelAndView;
+    }
+
 
 }
