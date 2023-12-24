@@ -1,7 +1,9 @@
 package com.exam.sirma.PairOfEmployees.FileHandler;
 
 import com.exam.sirma.PairOfEmployees.Model.Employee;
+import com.exam.sirma.PairOfEmployees.Repository.EmployeeRepository;
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -15,9 +17,15 @@ import java.util.List;
 @Component
 public class CsvReader {
 
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
     @PostConstruct
     public void readCsvOnStartup(){
-        read("employeeData.csv");
+        List<Employee> employeesList = read("employeeData.csv");
+        for (Employee employee : employeesList) {
+            employeeRepository.save(employee);
+        }
     }
     public List<Employee> read(String filename){
         List<Employee> employees = new ArrayList<>();
