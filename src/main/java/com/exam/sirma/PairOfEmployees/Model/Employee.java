@@ -1,9 +1,7 @@
 package com.exam.sirma.PairOfEmployees.Model;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "employees")
