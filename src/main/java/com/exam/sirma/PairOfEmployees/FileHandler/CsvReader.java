@@ -16,7 +16,7 @@ public class CsvReader {
              BufferedReader br = new BufferedReader((reader))) {
             String line;
             while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
+                String[] values = line.split("\\s*,\\s*");
                 try {
                     long id = Long.parseLong(values[0]);
                     int projectId = Integer.parseInt(values[1]);
@@ -34,7 +34,7 @@ public class CsvReader {
 
                     employees.add(new Employee(id, projectId, dateFrom, dateTo));
                 } catch (NumberFormatException e) {
-                    System.err.println("Invalid numeric format.");
+                    System.err.println("Invalid numeric format. Check csv file.");
                 }
             }
         } catch (IOException e) {
