@@ -8,7 +8,6 @@ import java.time.LocalDate;
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long ID;
     private int projectID;
     private LocalDate DateFrom;
